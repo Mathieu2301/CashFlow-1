@@ -1,0 +1,450 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="theme-color" content="#009FA2">
+    <meta name="msapplication-navbutton-color" content="#009FA2">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#009FA2">
+
+    <title>Cash Flow - Login</title>
+
+    <link rel="shortcut icon" href="./favicon.ico">
+
+    <link href="./css/fonts.css" rel="stylesheet">
+    <link href="./css/material-icon.css" rel="stylesheet">
+    <link href="./css/bounce.css" rel="stylesheet">
+    <link href="./css/loading.css" rel="stylesheet">
+    <link href="./css/scrollbar.css" rel="stylesheet">
+    
+    <script src="./js/jquery.min.js"></script>
+    <script src="./framework/vue.js"></script>
+
+    <style>
+
+        html {
+            background-color: #19222D;
+            font-family: 'Roboto', sans-serif;
+            font-size: 15px;
+        }
+
+        a, input[type=button], input[type=submit]{
+            cursor: pointer;
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+
+        h3{
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+
+        input[type=text], input[type=email], input[type=password] {
+            font-size: 15px;
+            width: 100%;
+            height: 23px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            margin-left: -5px;
+        }
+
+        input {
+            border: none;
+            border-radius: 3px;
+            display: block;
+        }
+
+        img {
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+        .vue {
+            margin: auto;
+            padding: 10px;
+            transition-duration: 0.5s;
+            transition-timing-function: cubic-bezier(0.23, 0.84, 0.36, 1.01);
+        }
+
+        .container {
+            background-color: #293A48;
+            padding-top: 15px;
+            padding-bottom: 31px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+            box-shadow: 0 3px 6px 0px #0000003d;
+            margin-top: 25px;
+            text-align: center;
+            width: 600px;
+            transition-duration: 0.5s;
+            transition-timing-function: cubic-bezier(0.23, 0.84, 0.36, 1.01);
+        }
+
+        @media screen and (min-width: 500px) and (max-width: 650px) {
+            .container {
+                width: 100% !important;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .container {
+                width: 100%;
+            }
+            .login_container {
+                width: 90% !important;
+            }
+            .toggle {
+                font-size: 0 !important;
+            }
+        }
+        
+        .login_container {
+            margin-top: 25px;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            transition-duration: 0.5s;
+            transition-timing-function: cubic-bezier(0.23, 0.84, 0.36, 1.01);
+        }
+        
+        #toggle-password {
+            float: right;
+            z-index: 10;
+            margin-bottom: -28px;
+            padding-top: 10px;
+        }
+
+        .error_item {
+            color: white;
+            text-align: left;
+            background-color: #FE4B76;
+            width: 310px;
+            margin-top: 25px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        .error_item #image {
+            margin-right: 10px;
+            padding-left: 10px;
+            padding-bottom: 17px;
+            padding-top: 15px;
+            vertical-align: middle;
+        }
+
+        .toggle_container {
+            background-color: #1d2935;
+            margin-top: -15px !important;
+            height: 55px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .toggle_container .left {
+            float: left;
+            border-top-left-radius: 5px;
+        }
+
+        .toggle_container .right {
+            float: right;
+            border-top-right-radius: 5px;
+        }
+
+        .toggle_container .selected {
+            background-color: #293a48;
+        }
+
+        .toggle_container :not(.selected) {
+            cursor: pointer;
+        }
+
+        .toggle {
+            height: 41px;
+            width: 50%;
+            font-size: 15px;
+            color: white;
+            padding-top: 15px;
+            transition-duration: 0.5s;
+            transition-timing-function: cubic-bezier(0.23, 0.84, 0.36, 1.01);
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+
+        .toggle .material-icons {
+            margin-right: 10px;
+            padding-left: 10px;
+            padding-bottom: 5px;
+            vertical-align: middle;
+        }
+        
+    </style>
+
+    <script>
+        function show_hide_pass() {
+            var input = $("#pass");
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+                $("#toggle-password").text("visibility_off")
+            } else {
+                input.attr("type", "password");
+                $("#toggle-password").text("visibility")
+            }
+        }
+    
+    </script>
+
+  </head>
+  <body>
+
+    <div class="loader">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 91 113.8" xml:space="preserve"><g><path fill="currentColor" d="M3.1,28.4c1.8,7,7.7,14,15.2,14.5c0.6,7.9,3.5,15.8,7.8,23c-0.2,0-0.4,0-0.6,0.1c-3.3,0.4-9.5,1.2-10.5,4.9c-0.2,0.9,0.3,1.7,1.1,1.9c1.6,0.5,2.5,0,4-0.7c1.9-0.9,3.9-1.5,6-2c0.8-0.2,1.6-0.3,2.5-0.4c0.7,1,1.4,1.9,2.1,2.8c-0.7,0.2-1.3,0.5-2,0.8c-2.8,1.2-8.6,3.8-8.5,7.4c0,0.8,0.7,1.5,1.5,1.5c1.6,0.1,2.2-0.6,3.4-1.6c1.5-1.3,3.1-2.4,4.8-3.2c1.2-0.6,2.4-1,3.6-1.3c2.8,3.2,5.9,6.1,9.1,8.6c0.7,0.5,1.7,0.4,2.4,0c4.4-2.3,8.1-5.3,11.4-8.7c1.3,0.3,2.5,0.8,3.8,1.4c1.6,0.8,3.1,1.8,4.5,2.9c1.3,1.1,1.9,2,3.7,2c0.8,0,1.5-0.7,1.5-1.5c0.2-3.6-5.7-6.2-8.5-7.4c-0.6-0.3-1.3-0.5-2-0.8c0.7-0.9,1.4-1.9,2.1-2.8c0.9,0.1,1.7,0.3,2.5,0.4c1.9,0.4,3.7,1,5.5,1.8c1.7,0.7,2.7,1.5,4.5,0.9c0.8-0.3,1.3-1.1,1.1-1.9c-1-3.7-7.2-4.5-10.5-4.9c-0.2,0-0.4-0.1-0.6-0.1c4.1-7,6.9-14.9,8.8-22.8c7.6-0.4,13.6-7.4,15.4-14.5c2.2-8.6-2-17.5-9.7-21.7C71,3,60.1,4,54,10.3c-4.5,4.6-5.9,10.4-6,16.7c-1.5,0-3,0.1-4.5,0.1c-0.1-6.3-1.5-12.1-6-16.7c-6.1-6.3-17-7.3-24.5-3.3C5.1,10.9,0.9,19.8,3.1,28.4z M9.3,19.2c2.9-3.1,7.1-4.8,11.3-3.2c2,0.7,3.6,2.1,4.7,3.9c1.4,2.2,1.1,4.6,1.9,7c0.3,1,1.9,1.4,2.4,0.3c2.6-5.5-2.1-12.4-7.1-14.5c-1.9-0.8-4-1.1-5.9-1c0.1,0,0.1-0.1,0.2-0.1c5.6-2.6,13.6-0.9,17.4,4c2.6,3.3,3,7.3,3.1,11.5c-2.2,0.3-4.2,1.1-5.2,3c-0.3,0.5,0.1,1.3,0.7,1.3c3.7-0.3,7.1-0.6,10.8-0.5c4.2,0.1,8.7-0.3,12.8,1.2c2.5,0.9,3.7-3.2,1.1-4c-1.1-0.4-2.2-0.6-3.3-0.8c0.1-4,0.4-7.9,2.8-11.1c3.9-5.2,11.8-7.1,17.7-4.4c0.1,0,0.2,0.1,0.2,0.1c-2-0.2-4.1,0.1-6.1,1c-5,2.1-9.7,9-7.1,14.5c0.5,1.1,2.1,0.7,2.4-0.3c0.8-2.4,0.5-4.7,1.9-7c1.1-1.8,2.7-3.1,4.7-3.9c4.4-1.6,8.7,0.3,11.6,3.6c0.8,2.3,1,4.8,0.5,7.4c-1.2,5.8-5.4,9.6-10.2,12.5c-1.3-1.2-3.7-1.1-4.2,1.1c-1.8,8.8-4.9,17.7-9.8,25.2c-2.2,0.3-4.4,1-6.3,2.3c-0.5,0.4-0.4,1.5,0.4,1.4c1.1-0.1,2.3-0.2,3.4-0.2c-0.5,0.7-1.1,1.3-1.7,2c-1.6-0.1-3.2,0-4.7,0.4c-1.2,0.4-1.3,2.1,0,2.5c0.5,0.1,0.9,0.3,1.4,0.4c-2.1,1.9-4.3,3.6-6.8,5.1c-1.9-1.5-3.7-3.1-5.4-4.9c0.7-0.2,1.4-0.3,2-0.5c1.2-0.4,1.2-2.1,0-2.5c-1.6-0.5-3.3-0.6-5.1-0.4c-0.6-0.7-1.1-1.4-1.6-2c1.3,0,2.6,0.1,3.8,0.2c0.8,0.1,0.9-1,0.4-1.4c-2-1.4-4.3-2.1-6.7-2.4c-4.8-7.4-8.2-15.9-9.9-24.3c-0.1-0.5-0.4-0.9-0.8-1c-0.1,0-0.1-0.1-0.2-0.1c-5.4-2.9-10.3-6.7-11.8-13C8.1,24.5,8.4,21.7,9.3,19.2z"/><path fill="currentColor" d="M57.1,54.4c0.4,0,0.9-0.1,1.3-0.2c0.5-0.2,1-0.3,1.4-0.7c0.4-0.3,0.7-0.7,0.9-1.2c0.2-0.4,0.2-0.7,0.3-1.2c0-0.2-0.1-0.5-0.1-0.7c-0.1-0.3-0.2-0.6-0.5-0.9c-0.3-0.4-0.8-0.8-1.3-0.9c-0.8-0.2-1.7-0.2-2.4,0.3c-0.2,0.1-1,0.5-1.2,0.7c-0.3,0.3-0.6,0.6-0.8,0.9c-0.5,0.9-0.4,2.2,0.4,2.9C55.7,54,56.3,54.4,57.1,54.4z"/><path fill="currentColor" d="M30.5,53.8c0.4,0.3,0.9,0.5,1.4,0.7c0.4,0.1,0.8,0.2,1.2,0.2c0.9,0,1.5-0.4,2.1-0.9c0.1-0.2,0.3-0.3,0.4-0.5c0.2-0.3,0.3-0.6,0.3-0.9c0.1-0.5,0-1-0.3-1.5s-1.8-1.8-2.7-2c-0.6-0.1-1-0.1-1.6,0c-0.2,0.1-0.4,0.2-0.6,0.3c-0.3,0.2-0.5,0.4-0.7,0.7c-0.3,0.4-0.6,1-0.6,1.6C29.4,52.4,29.7,53.2,30.5,53.8z"/></g></svg>
+    </div>
+
+    <div class="body" style="display: none;">
+        <div style="text-align: center;margin-top: 4em;">
+            <svg class="logob" style="height: 200px;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 91 113.8" xml:space="preserve"><g style="color: white;"><path fill="currentColor" d="M3.1,28.4c1.8,7,7.7,14,15.2,14.5c0.6,7.9,3.5,15.8,7.8,23c-0.2,0-0.4,0-0.6,0.1c-3.3,0.4-9.5,1.2-10.5,4.9c-0.2,0.9,0.3,1.7,1.1,1.9c1.6,0.5,2.5,0,4-0.7c1.9-0.9,3.9-1.5,6-2c0.8-0.2,1.6-0.3,2.5-0.4c0.7,1,1.4,1.9,2.1,2.8c-0.7,0.2-1.3,0.5-2,0.8c-2.8,1.2-8.6,3.8-8.5,7.4c0,0.8,0.7,1.5,1.5,1.5c1.6,0.1,2.2-0.6,3.4-1.6c1.5-1.3,3.1-2.4,4.8-3.2c1.2-0.6,2.4-1,3.6-1.3c2.8,3.2,5.9,6.1,9.1,8.6c0.7,0.5,1.7,0.4,2.4,0c4.4-2.3,8.1-5.3,11.4-8.7c1.3,0.3,2.5,0.8,3.8,1.4c1.6,0.8,3.1,1.8,4.5,2.9c1.3,1.1,1.9,2,3.7,2c0.8,0,1.5-0.7,1.5-1.5c0.2-3.6-5.7-6.2-8.5-7.4c-0.6-0.3-1.3-0.5-2-0.8c0.7-0.9,1.4-1.9,2.1-2.8c0.9,0.1,1.7,0.3,2.5,0.4c1.9,0.4,3.7,1,5.5,1.8c1.7,0.7,2.7,1.5,4.5,0.9c0.8-0.3,1.3-1.1,1.1-1.9c-1-3.7-7.2-4.5-10.5-4.9c-0.2,0-0.4-0.1-0.6-0.1c4.1-7,6.9-14.9,8.8-22.8c7.6-0.4,13.6-7.4,15.4-14.5c2.2-8.6-2-17.5-9.7-21.7C71,3,60.1,4,54,10.3c-4.5,4.6-5.9,10.4-6,16.7c-1.5,0-3,0.1-4.5,0.1c-0.1-6.3-1.5-12.1-6-16.7c-6.1-6.3-17-7.3-24.5-3.3C5.1,10.9,0.9,19.8,3.1,28.4z M9.3,19.2c2.9-3.1,7.1-4.8,11.3-3.2c2,0.7,3.6,2.1,4.7,3.9c1.4,2.2,1.1,4.6,1.9,7c0.3,1,1.9,1.4,2.4,0.3c2.6-5.5-2.1-12.4-7.1-14.5c-1.9-0.8-4-1.1-5.9-1c0.1,0,0.1-0.1,0.2-0.1c5.6-2.6,13.6-0.9,17.4,4c2.6,3.3,3,7.3,3.1,11.5c-2.2,0.3-4.2,1.1-5.2,3c-0.3,0.5,0.1,1.3,0.7,1.3c3.7-0.3,7.1-0.6,10.8-0.5c4.2,0.1,8.7-0.3,12.8,1.2c2.5,0.9,3.7-3.2,1.1-4c-1.1-0.4-2.2-0.6-3.3-0.8c0.1-4,0.4-7.9,2.8-11.1c3.9-5.2,11.8-7.1,17.7-4.4c0.1,0,0.2,0.1,0.2,0.1c-2-0.2-4.1,0.1-6.1,1c-5,2.1-9.7,9-7.1,14.5c0.5,1.1,2.1,0.7,2.4-0.3c0.8-2.4,0.5-4.7,1.9-7c1.1-1.8,2.7-3.1,4.7-3.9c4.4-1.6,8.7,0.3,11.6,3.6c0.8,2.3,1,4.8,0.5,7.4c-1.2,5.8-5.4,9.6-10.2,12.5c-1.3-1.2-3.7-1.1-4.2,1.1c-1.8,8.8-4.9,17.7-9.8,25.2c-2.2,0.3-4.4,1-6.3,2.3c-0.5,0.4-0.4,1.5,0.4,1.4c1.1-0.1,2.3-0.2,3.4-0.2c-0.5,0.7-1.1,1.3-1.7,2c-1.6-0.1-3.2,0-4.7,0.4c-1.2,0.4-1.3,2.1,0,2.5c0.5,0.1,0.9,0.3,1.4,0.4c-2.1,1.9-4.3,3.6-6.8,5.1c-1.9-1.5-3.7-3.1-5.4-4.9c0.7-0.2,1.4-0.3,2-0.5c1.2-0.4,1.2-2.1,0-2.5c-1.6-0.5-3.3-0.6-5.1-0.4c-0.6-0.7-1.1-1.4-1.6-2c1.3,0,2.6,0.1,3.8,0.2c0.8,0.1,0.9-1,0.4-1.4c-2-1.4-4.3-2.1-6.7-2.4c-4.8-7.4-8.2-15.9-9.9-24.3c-0.1-0.5-0.4-0.9-0.8-1c-0.1,0-0.1-0.1-0.2-0.1c-5.4-2.9-10.3-6.7-11.8-13C8.1,24.5,8.4,21.7,9.3,19.2z"/><path fill="currentColor" d="M57.1,54.4c0.4,0,0.9-0.1,1.3-0.2c0.5-0.2,1-0.3,1.4-0.7c0.4-0.3,0.7-0.7,0.9-1.2c0.2-0.4,0.2-0.7,0.3-1.2c0-0.2-0.1-0.5-0.1-0.7c-0.1-0.3-0.2-0.6-0.5-0.9c-0.3-0.4-0.8-0.8-1.3-0.9c-0.8-0.2-1.7-0.2-2.4,0.3c-0.2,0.1-1,0.5-1.2,0.7c-0.3,0.3-0.6,0.6-0.8,0.9c-0.5,0.9-0.4,2.2,0.4,2.9C55.7,54,56.3,54.4,57.1,54.4z"/><path fill="currentColor" d="M30.5,53.8c0.4,0.3,0.9,0.5,1.4,0.7c0.4,0.1,0.8,0.2,1.2,0.2c0.9,0,1.5-0.4,2.1-0.9c0.1-0.2,0.3-0.3,0.4-0.5c0.2-0.3,0.3-0.6,0.3-0.9c0.1-0.5,0-1-0.3-1.5s-1.8-1.8-2.7-2c-0.6-0.1-1-0.1-1.6,0c-0.2,0.1-0.4,0.2-0.6,0.3c-0.3,0.2-0.5,0.4-0.7,0.7c-0.3,0.4-0.6,1-0.6,1.6C29.4,52.4,29.7,53.2,30.5,53.8z"/><text x="3" y="107" font-weight="600" fill="currentColor" font-size="17" font-family="Arial">Cash Flow</text></g></svg>
+        </div>
+
+        <div id="login_vue" class="vue" v-if="visible">
+            <form class="container" @submit="submit">
+            
+                <p class="error_item" @click="error=''" style="cursor: pointer;" v-if="error != ''"><i class="material-icons" id="image" v-if="error">warning</i> {{ error }}</p>
+            
+                <div class="login_container">
+                    <input v-model="form.email" type="email" placeholder="Email" required>
+                </div>
+
+                <div class="login_container">
+                    <i id="toggle-password" onclick="show_hide_pass();" class="material-icons" style="cursor: pointer;">visibility</i>
+                
+                    <input v-model="form.pass" id="pass" type="password" placeholder="Password" required>
+                    <a @click="forgot_pass" style="float: right;color: white;font-weight: 300;text-decoration: underline;padding-top: 5px;padding-bottom: 25px; cursor: pointer;">Forgot your password?</a>
+                </div>
+            
+                <div class="login_container">
+                    <input type="submit" value="Sign in" style="height: 37px;width: 100%;font-weight: 400;font-size: 15px;background-color: #009FA2;color: #fff;">
+                </div>
+            
+                <h3 style="color: white;font-weight: 300;font-size: 15px;padding-top: 5px;">Don't have an account? <a @click="register" style=" text-decoration: underline; font-weight: 600; color: #009FA2; cursor: pointer;">Sign up</a></h3>
+            </form>
+        </div>
+
+        <div id="register_vue" class="vue" v-if="visible">
+        
+            <form class="container" @submit="submit">
+            
+                <div class="toggle_container">
+                    <div class="toggle left" v-bind:class="{ selected: !double }" @click="double=false"><i class="material-icons">person</i>Individual account</div>
+                    <div class="toggle right" v-bind:class="{ selected: double }" @click="double=true"><i class="material-icons">people</i>Multiple account</div>
+                </div>
+            
+                <p class="error_item" @click="error=''" style="cursor: pointer;" v-if="error"><i class="material-icons" id="image" v-if="error">warning</i> {{ error }}</p>
+
+                <div class="login_container">
+                    <input v-model="form.profile1.name" type="text" placeholder="Name" required>
+                </div>
+
+                <div class="login_container">
+                    <input v-model="form.profile1.fname" type="text" placeholder="First Name" required>
+                </div>
+            
+                <div class="login_container" v-if="double">
+                    <input v-model="form.profile2.name" type="text" placeholder="Partner's name" required>
+                </div>
+
+                <div class="login_container" v-if="double">
+                    <input v-model="form.profile2.fname" type="text" placeholder="Partner's first Name" required>
+                </div>
+            
+                <div class="login_container">
+                    <input v-model="form.email" type="email" placeholder="Email" required>
+                </div>
+
+                <div class="login_container">
+                    <input v-model="form.pass" type="password" placeholder="Password" required>
+                </div>
+            
+                <div class="login_container">
+                    <input v-model="form.confirm" type="password" placeholder="Confirm password" required>
+                </div>
+            
+                <div class="login_container">
+                    <input type="submit" value="Create an account" style="height: 37px;width: 100%;font-weight: 400;font-size: 15px;background-color: #009FA2;color: #fff;">
+                </div>
+            
+                <h3 style="color: white;font-weight: 300;font-size: 15px;padding-top: 5px;">Already have an account? <a @click="login" style="text-decoration: underline; font-weight: 600; color: #009FA2;">Sign in</a></h3>
+            </form>
+        </div>
+
+        <div id="forgot_vue" class="vue" v-if="visible">
+        
+            <form class="container" @submit="submit">
+            
+                <p class="error_item" @click="error=''" style="cursor: pointer;" v-if="error"><i class="material-icons" id="image" v-if="error">warning</i> {{ error }}</p>
+            
+                <div class="login_container">
+                    <input v-model="form.email" type="email" placeholder="Email" required>
+                </div>
+            
+                <div class="login_container">
+                    <input type="submit" value="Reset password" style="height: 37px;width: 100%;font-weight: 400;font-size: 15px;background-color: #009FA2;color: #fff;">
+                </div>
+            </form>
+            <i class="material-icons" style="text-align: center; display: block; padding-top: 15px; padding-right: 500px; font-size: 55px; color: #009fa2; cursor: pointer;" @click="back">keyboard_backspace</i>
+        </div>
+    </div>
+
+    <script>
+
+        $(function(){
+            var vues = {
+                login_vue: new Vue({
+                    el: '#login_vue',
+                    data: {
+                        visible: true,
+                        error: "",
+                        form: {
+                            email: getCookie("username"),
+                            pass: ""
+                        }
+                    },
+                    methods: {
+                        submit: function (e) {
+                            e.preventDefault();
+                            var this_ = this;
+                            loading(true);
+                            socket.emit("loginpage_login", {email: this.form.email, pass: this.form.pass}, function(result){
+                                if (result.error){
+                                    loading(false);
+                                    this_.error = result.error.text;
+                                }else{
+                                    setCookie("session", result.session.token);
+                                    setCookie("username", result.session.username);
+                                    document.location.reload();
+                                }
+                            });
+                        },
+                        forgot_pass: function(){
+                            this.visible = false;
+                            vues.forgot_vue.visible = true;
+                        },
+                        register: function(){
+                            this.visible = false;
+                            vues.register_vue.visible = true;
+                        }
+                    }
+                }),
+
+                register_vue: new Vue({
+                    el: '#register_vue',
+                    data: {
+                        visible: false,
+                        error: "",
+                        double: false,
+                        form: {
+                            profile1:{
+                                name: "",
+                                fname: "",
+                            },
+                            profile2:{
+                                name: "",
+                                fname: "",
+                            },
+                            email: "",
+                            pass: "",
+                            confirm: ""
+                        }
+                    },
+                    methods: {
+                        submit: function (e) {
+                            e.preventDefault();
+                            loading(true);
+                            
+                            if (this.form.pass != this.form.confirm){
+                                loading(false);
+                                this.error = "Password and confirm doesn't match";
+                            }else{
+                                var this_ = this;
+                                socket.emit("loginpage_register", {email: this_.form.email, pass: this_.form.pass, doubleaccount: this_.double, u1:this_.form.profile1, u2:this_.form.profile2}, function(result){
+                                    if (result.error){
+                                        loading(false);
+                                        this_.error = result.error.text;
+                                    }else{
+                                        setCookie("session", result.session.token);
+                                        setCookie("username", result.session.username);
+                                        document.location.reload();
+                                    }
+                                });
+                            }
+                        },
+                        login: function(){
+                            this.visible = false;
+                            vues.login_vue.visible = true;
+                        }
+                    }
+                }),
+
+                forgot_vue: new Vue({
+                    el: '#forgot_vue',
+                    data: {
+                        visible: false,
+                        error: "",
+                        form: {
+                            email: ""
+                        }
+                    },
+                    methods: {
+                        submit: function (e) {
+                            e.preventDefault();
+                            loading(true);
+                            var this_ = this;
+                            socket.emit("loginpage_forgotPass", {email: this.form.email}, function(result){
+                                if (result.error){
+                                    loading(false);
+                                    this_.error = result.error.text;
+                                }else{
+                                    loading(false);
+                                    alert("Check your emails");
+                                    document.location.reload();
+                                }
+                            });
+                        },
+                        back: function(){
+                            this.visible = false;
+                            vues.login_vue.visible = true;
+                        },
+                    }
+                }),
+            }
+
+            function loading(status){
+                if (status == true){
+                    $(".body").fadeOut(100);
+                    $(".loader").fadeIn(100);
+                }else{
+                    $(".loader").fadeOut(100);
+                    $(".body").fadeIn(100);
+                }
+            }
+
+            function getCookie(cname) {var name = cname + "=";var decodedCookie = decodeURIComponent(document.cookie);var ca = decodedCookie.split(';');for(var i = 0; i <ca.length; i++){var c = ca[i];while (c.charAt(0) == ' ') {c = c.substring(1);}if (c.indexOf(name) == 0){return c.substring(name.length, c.length);}}return "";}function setCookie(name, value) {document.cookie = name + "=" + value + ";365;path=/";}
+
+            var socket = io();
+
+            $(".loader").fadeOut();
+            setTimeout(() => {
+                $(".body").fadeIn();
+            }, 400);
+
+        });
+    </script>
+    <script src="./js/socket.io.js"></script>
+  </body>
+</html>

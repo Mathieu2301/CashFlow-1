@@ -1,0 +1,19 @@
+{
+  "name": "cash_flow",
+  "version": "0.0.1",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main"
+  },
+  "author": "USP5, Mathieu Colmon",
+  "license": "USP 2018",
+  "dependencies": {
+    "cookie-parser": "latest",
+    "express": "latest",
+    "js-scrypt": "^0.2.0",
+    "mysql": "latest",
+    "nodemailer": "^5.1.1",
+    "scrypt-js": "^2.0.4",
+    "socket.io": "latest"
+  }
+}

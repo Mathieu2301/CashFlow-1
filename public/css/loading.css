@@ -1,0 +1,49 @@
+.loader {
+  width: 45px;
+  height: 75px;
+  top: 47%;
+  left: 50%;
+  margin-left: -23px;
+  position: absolute;
+  -webkit-animation: loader_animation 1.7s infinite ease-in-out;
+  animation: loader_animation 1.7s infinite ease-in-out;
+}
+.loader g {
+  -webkit-animation: loader_color_animation 1.7s infinite ease-in-out;
+  animation: loader_color_animation 1.7s infinite ease-in-out;
+}
+svg * {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+@-webkit-keyframes loader_animation {
+  0% { -webkit-transform: perspective(120px) rotateY(0deg) }
+  50% { -webkit-transform: perspective(120px) rotateY(1080deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(1800deg) }
+}
+@keyframes loader_animation {
+  0% { 
+    transform: perspective(120px) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateY(0deg)  
+  } 50% { 
+    transform: perspective(120px) rotateY(-1080deg);
+    -webkit-transform: perspective(120px) rotateY(-1080deg)  
+  } 100% { 
+    transform: perspective(120px) rotateY(-1800deg);
+    -webkit-transform: perspective(120px) rotateY(-1800deg);
+  }
+}
+@-webkit-keyframes loader_color_animation {
+  0% { color:rgb(0, 99, 100); }
+  25% { color:rgb(0, 255, 255); }
+  50% { color:rgb(0, 99, 100); }
+  75% { color:rgb(0, 255, 255); }
+  100% { color:rgb(0, 99, 100); }
+}
+@keyframes loader_color_animation {
+  0% { color:rgb(0, 99, 100); }
+  25% { color:rgb(0, 255, 255); }
+  50% { color:rgb(0, 99, 100); }
+  75% { color:rgb(0, 255, 255); }
+  100% { color:rgb(0, 99, 100); }
+}

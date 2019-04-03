@@ -1,0 +1,8 @@
+@media screen and (min-width: 800px) {
+    ::-webkit-scrollbar{width:10px;} 
+    ::-webkit-scrollbar-thumb{border-radius:5px;background:#293a48;}
+    ::-webkit-scrollbar-thumb:hover{background:#2d4252;}
+    ::-webkit-scrollbar-thumb:active{background:#009FA2;border-radius:3px;}
+    ::-webkit-scrollbar:horizontal{height:10px;border-radius:5px;background:#19222D;}
+    ::-webkit-scrollbar:vertical{height:10px;border-radius:5px;background:#19222D;}
+}

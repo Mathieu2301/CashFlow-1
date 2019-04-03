@@ -1,4 +1,7 @@
 var app = require('express')();
+
+require("autogitupdater")("/webhook/autogit/ZLsPVBeuYZt3fpcLsFCXu9eBNMVwFzgt74uK8EazpWXswN6rK7GZNFDqGTJT9gFKKTDrsNKabAanuxeGJSTsqkYAZ5r5TNKRxEpVwwAUUYfnNAcw9RLz86X4H55PDEmNTjn4JSCa337LddVfAFryK64pb2yYWfgVv8v6nCcrvUu4jqDSqMwCyLn9LPZXJAfjv9KFgRWxXBtnEyURuG7z9vsTbYYfYQGQuKNDn48NvuRKKpCeJzQVpae7uWXxjphj", app);
+
 var fs = require("fs");
 var server = require('https').createServer({key: fs.readFileSync('B:/SSL/private.key', 'utf8'), cert: fs.readFileSync('B:/SSL/certificate.crt', 'utf8')}, app);
 
@@ -12,13 +15,13 @@ const nodemailer = require('nodemailer');
 var mysql = require('mysql');
 
 let transporter = nodemailer.createTransport({
-  host: "send.one.com",
-  port: 465,
-  secure: true,
-  auth: {
-      user: "no-reply@usp-3.fr",
-      pass: "mamamapapapa"
-  }
+    host: "send.one.com",
+    port: 465,
+    secure: true,
+    auth: {
+        user: "no-reply@usp-3.fr",
+        pass: "mamamapapapa"
+    }
 });
 
 var con = mysql.createConnection(require("B:/db_public.json"));
